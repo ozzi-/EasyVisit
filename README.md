@@ -1,4 +1,4 @@
-# EasyVisit
+# . ![img](https://i.imgur.com/w8is9WJ.png) - EasyVisit 
 With EasyVisit you have full control over your visitors – the digital visitor list.
 
 ![img](https://i.imgur.com/S3BrXRx.png)
@@ -17,6 +17,7 @@ With EasyVisit you have full control over your visitors – the digital visitor 
 - E-Mail and SMS notifications 
 - Dynamic visitor welcome text
 - Detailed log via syslog (audit trail)
+- Open Source (https://github.com/ozzi-/EasyVisit/blob/master/EULA_READ_ME.txt)
 
 ## Manual / Setup
 You can find the manual including setup instructions here
@@ -24,3 +25,6 @@ https://github.com/ozzi-/EasyVisit/blob/master/easyvisit_manual.pdf
 
 ## EasyVisit website
 https://easyvisit.zgheb.com
+
+## EULA
+https://github.com/ozzi-/EasyVisit/blob/master/EULA_READ_ME.txt

@@ -143,7 +143,7 @@
 	$translation['visitor_contactperson'] 	= 'Contact Person';
 	$translation['visitor_identifier'] 		= 'Identifier';
 	$translation['visitor_id_checked'] 		= 'ID checked';
-	$translation['visitor_ok'] 				= 'Check-in visitor';
+	$translation['visitor_ok'] 				= 'Check-In Visitor';
 	$translation['visitor_start'] 			= 'Check-In';
 	$translation['visitor_end']				= 'Check-Out';
 	$translation['visitor_checkout']		= 'Check-Out';
@@ -164,8 +164,8 @@
 	$translation['visitor']					= "Visitor";
 	$translation['print_badge']				= "Print";
 
-	$translation['checkin_delete']				= "Delete check-in";
-	$translation['checkin_delete_sure']			= "Are you sure you wish to delete this check-in?";
+	$translation['checkin_delete']				= "Delete Check-In";
+	$translation['checkin_delete_sure']			= "Are you sure you wish to delete this Check-In?";
 		
 	$translation['reoccuring_visitor']		= "Are you here often and possess a visitor code?";
 	$translation['reoccuring_visitor_btn']	= "Fast Check-In";
@@ -203,7 +203,7 @@
 	$translation['device_exists']			= 'Device name already taken';
 		
 		
-	$translation['visitor_waiting_for_input']	= 'Tabked input started - waiting for check-in.';
+	$translation['visitor_waiting_for_input']	= 'Tablet input started - waiting for check-in.';
 		
 	$translation['settings']		= 'Settings';
 	$translation['active'] 			= 'Active';

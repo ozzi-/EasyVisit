@@ -43,19 +43,15 @@
 						<label for="name"><?= translation_get('visitor_surname'); ?></label>
 						<input class="form-control" maxlength="120" type="text" id="surname" name="surname" required autocomplete="off">
 					</div>
-					<div class="form-group" id="step1_3">
+					<div class="form-group" id="step1_3" style="display:none">
 						<label for="company"><?= translation_get('visitor_company'); ?></label>
-						<input class="form-control" maxlength="120" type="text" id="company" name="company" required autocomplete="off">
+						<input class="form-control" maxlength="120" type="text" id="company" name="company" required autocomplete="off" value="-">
 					</div>
-					<div class="form-group" id="step1_4">
+					<div class="form-group" id="step1_4" style="display:none">
 						<label for="contactperson"><?= translation_get('visitor_contactperson'); ?></label><br>
 						<select onchange="contactpersonselected()" class="form-control"
 							name="contactpersondd" id="contactpersondd" <?php if(sizeof($contactpersons)==0){ echo "style=\"display: none\""; } ?>>
-							<option disabled selected value></option>
-							<option value="custom"><?= translation_get('contactperson_not_in_list') ?></option>
-							<?php foreach ($contactpersons as $contactperson) { ?>
-									<option value="<?= $contactperson["contactperson_name"] ?>"><?= $contactperson["contactperson_name"] ?></option>
-							<?php } ?>
+							<option selected value="-"></option>
 						</select>
 						<input class="form-control" autocomplete="off" maxlength="120" type="text" id="contactperson" name="contactperson" required autocomplete="off">
 					</div>
@@ -99,8 +95,8 @@
 <script src="js/signature_pad.min.js"></script>
 <script>
 
-	document.getElementById("device_name").value    = localStorage.device_name;
-	document.getElementById("secret").value         = localStorage.secret;
+	document.getElementById("device_name").value    = "none";
+	document.getElementById("secret").value         = "none";
 	<?php if(sizeof($contactpersons)!=0){ ?>
 		updateinput();
 		document.getElementById("contactperson").style.display = 'none';
@@ -208,54 +204,8 @@
 			location.reload();
 		}
 	}, 60000);
-		if(localStorage.secret===undefined){
-		window.location="tablet.php?p=tabletregister";
-	}
+
 	var firstState=null;
 	var lastState=null;
-	(function poll() {
-		var request = new XMLHttpRequest();
-		var onlyOnStateChange=false;
-		<?php
-		if((isset($_GET['action']) && $_GET['action']=="user")){ ?>
-			onlyOnStateChange=true;
-		<?php } ?>
 
-		request.open("GET","calls/awaitinginput.php");
-		request.addEventListener('load', function(event) {
-			if (request.status == 200) {
-				try {
-					var jsonResponse = JSON.parse(request.responseText);
-					var awaitingInput = jsonResponse.awaiting_input === "true";
-					var deviceName = jsonResponse.device_name;
-					if( deviceName !== localStorage.device_name){
-						window.location.href = "tablet.php";
-					}
-					if(onlyOnStateChange===true){
-						if(firstState===null){
-							firstState=awaitingInput;
-							lastState=awaitingInput;
-						}else{
-							if(lastState!==awaitingInput && !awaitingInput){
-								window.location.href = "tablet.php";
-							}
-						}
-						if(lastState!==awaitingInput){
-							lastState=awaitingInput;
-						}
-					}else{
-						if(!awaitingInput || deviceName != localStorage.device_name){
-							window.location.href = "tablet.php";
-						}
-					}
-				} catch(err) {
-					console.warn(err.message);
-				}
-			} else {
-				console.warn(request.statusText, request.responseText);
-			}
-			setTimeout(poll, 1200);
-		});
-		request.send();
-	}());
 </script>

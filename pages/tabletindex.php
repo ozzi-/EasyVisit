@@ -61,54 +61,9 @@
 </span>
 </a>
 
-<span class="footer">
-	<a href="#" onclick="settings()">
-			<?= translation_get("settings"); ?>
-	</a>
-</span>
 
 <div id="overlay"></div>
 
 <script>
-	function settings(){
-		var settingsprompt = prompt("<?= translation_get("device_pass_settings"); ?>");
-		if(settingsprompt != null){
-			if(settingsprompt===localStorage.secret){
-				window.location="tablet.php?p=tabletsettings";
-			}
-		}
-	} 
 
-	(function poll() {
-		if(localStorage.secret===undefined){
-			window.location="tablet.php?p=tabletregister";
-		}
-		var request = new XMLHttpRequest();
-		request.open("GET","calls/awaitinginput.php");
-		request.addEventListener('load', function(event) {
-			if (request.status == 200) {
-				try {
-					var jsonResponse = JSON.parse(request.responseText);
-					var awaitingInput = jsonResponse.awaiting_input === "true";
-					var deviceName = jsonResponse.device_name;
-					if(deviceName!==localStorage.device_name){
-						document.getElementById('formlink').removeAttribute('href');
-						document.getElementById('overlay').style.display = 'block';
-					}else{
-						document.getElementById('formlink').setAttribute("href","tablet.php?p=tabletform&action=user");
-						document.getElementById('overlay').style.display = 'none';
-					}
-					if(awaitingInput && deviceName == localStorage.device_name){
-						window.location.href = "tablet.php?p=tabletform";
-					}
-				} catch(err) {
-					console.warn(err.message);
-				}
-			} else {
-				console.warn(request.statusText, request.responseText);
-			}
-			setTimeout(poll, 1200);
-		});
-		request.send();
-	}());
 </script>

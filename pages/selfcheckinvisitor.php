@@ -9,9 +9,9 @@
 	checkCSRF();
 
 	if(	isset($_POST['name'])		&&isset($_POST['surname'])		&&isset($_POST['contactperson'])
-		&&isset($_POST['signature'])&&isset($_POST['device_name'])	&&isset($_POST['secret']) &&isset($_POST['company'])){
+		&&isset($_POST['signature']) &&isset($_POST['company'])){
 
-		$chkRes= checkSecret($_POST['device_name'], $_POST['secret'],true);
+		$chkRes= 1;
 		if($chkRes===1){
 			$name		= $_POST['name'];
 			$surname	= $_POST['surname'];
@@ -59,7 +59,7 @@
 			ob_end_clean();
 			$signatureScaledEncoded = "data:image/png;base64,".base64_encode($signatureScaled);
 			$visitoraddedid	=selfCheckinVisitor($name,$surname,$company,$contactperson,$signatureScaledEncoded);
-			header('Location: tablet.php');
+			header('Location: tablet.php?p=tabletsuccess');
 			die();
 		}elseif($chkRes==0){
 			header('Location: tablet.php?msg=device_not_active');
